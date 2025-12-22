@@ -17,6 +17,7 @@ async function getData(URL) {
 }
 getData(URL);
 
+/*
 const videoGames = [
   {
     title: "The Legend of Zelda: Breath of the Wild",
@@ -198,3 +199,5 @@ videoGames
 
 // publishers.nintendo = 3
 // publishers['publisher']
+
+*/
