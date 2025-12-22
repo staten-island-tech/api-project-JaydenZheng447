@@ -3,7 +3,7 @@ import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
 
-document.querySelector("#app").innerHTML = `
+/* document.querySelector("#app").innerHTML = `
   <div>
     <a href="https://vite.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
@@ -21,9 +21,10 @@ document.querySelector("#app").innerHTML = `
   </div>
 `;
 
-setupCounter(document.querySelector("#counter"));
+setupCounter(document.querySelector("#counter")); */
 
 const URL = "https://pokeapi.co/api/v2/pokemon/charmander";
+const URLz = "https://pokeapi.co/api/v2/pokemon/ditto";
 
 async function getData(URL) {
   try {
@@ -33,9 +34,12 @@ async function getData(URL) {
     } else {
       const data = await response.json(); //makes the data into JSON object we can use
       console.log(data);
-      document.getElementById(
-        "api-response"
-      ).innerHTML = `<h3>${data.name} and ${data.id}</h3>`;
+      document.getElementById("api-response").insertAdjacentHTML(
+        "afterend",
+        `<div class="card" >
+       <h3>${data.name} and ${data.id}</h3>
+      </div>`
+      );
     }
   } catch (error) {
     console.log(error);
@@ -43,10 +47,35 @@ async function getData(URL) {
   }
 }
 
-getData(URL);
+async function fetchDataInParallel() {
+  const parameters = [
+    "param1",
+    "param2",
+    "param3",
+    "param4" /* Add more parameters here */,
+  ];
+  // Map each parameter to an API call with the corresponding index
+  const promises = parameters.map(
+    (param, index) => getData(param, index + 1) // Pass the API number to track which API we're calling
+  );
+  try {
+    // Wait for all the promises to resolve
+    const results = await Promise.all(promises);
+    // Process the results and log each response
+    results.forEach((result, index) => {
+      console.log(`API ${index + 1} Response:`, result);
+    });
+  } catch (error) {
+    console.error("Error during fetching:", error);
+  }
+}
 
+getData(URL);
+getData(URLz);
+getData(URL);
+getData(URL);
 function zootData(x) {
-  for (i = 0; i < x; i++) {
+  for (leti = 0; i < x; i++) {
     getData(URL);
   }
 }
