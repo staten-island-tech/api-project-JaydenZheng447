@@ -47,6 +47,14 @@ async function getData(URL) {
   }
 }
 
+const charName = document.getElementById("charName");
+document.getElementById("api-response").insertAdjacentHTML(
+  "afterend",
+  `<div class="card" >
+       <h3>${data.name} and ${data.id}</h3>
+      </div>`
+);
+
 async function fetchDataInParallel() {
   const parameters = [
     "name",
