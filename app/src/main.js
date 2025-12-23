@@ -23,8 +23,8 @@ import { setupCounter } from "./counter.js";
 
 setupCounter(document.querySelector("#counter")); */
 
-const URL = "https://pokeapi.co/api/v2/pokemon/charmander";
-const URLz = "https://pokeapi.co/api/v2/pokemon/ditto";
+const URL = "https://web.dragonball-api.com/";
+const URLz = "https://dragonball-api.com/api/characters/1";
 
 async function getData(URL) {
   try {
@@ -49,10 +49,10 @@ async function getData(URL) {
 
 async function fetchDataInParallel() {
   const parameters = [
-    "param1",
-    "param2",
-    "param3",
-    "param4" /* Add more parameters here */,
+    "name",
+    "id",
+    "ki",
+    "race" /* Add more parameters here */,
   ];
   // Map each parameter to an API call with the corresponding index
   const promises = parameters.map(
@@ -75,7 +75,7 @@ getData(URLz);
 getData(URL);
 getData(URL);
 function zootData(x) {
-  for (leti = 0; i < x; i++) {
+  for (let i = 0; i < x; i++) {
     getData(URL);
   }
 }
