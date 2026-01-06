@@ -24,8 +24,8 @@ import { setupCounter } from "./counter.js";
 setupCounter(document.querySelector("#counter")); */
 
 //use tailwind css for this project
-const URL = "https://web.dragonball-api.com/";
-const URLz = "https://dragonball-api.com/api/characters/1";
+const apiInput = "1";
+const URLz = `https://dragonball-api.com/api/characters/${apiInput}`;
 
 async function getData(URLz) {
   try {
@@ -37,7 +37,7 @@ async function getData(URLz) {
       console.log(data);
       document.getElementById("api-response").insertAdjacentHTML(
         "afterend",
-        `<div class="card" >
+        `<div class="card">
        <h3>${data.name} and ${data.id}</h3>
       </div>`
       );
@@ -49,6 +49,7 @@ async function getData(URLz) {
 }
 
 const charName = document.getElementById("charName");
+
 document.getElementById("api-response").insertAdjacentHTML(
   "afterend",
   `<div class="card" >
@@ -79,6 +80,13 @@ async function fetchDataInParallel() {
   }
 }
 
+function othername() {
+  var input = document.getElementById("userInput").value;
+  alert(input);
+  console.log(input);
+}
+fetchDataInParallel(URLz);
+/* 
 getData(URL);
 getData(URLz);
 getData(URL);
@@ -88,4 +96,4 @@ function zootData(x) {
     getData(URL);
   }
 }
-zootData(5);
+zootData(5); */
