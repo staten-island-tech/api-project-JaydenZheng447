@@ -23,12 +23,13 @@ import { setupCounter } from "./counter.js";
 
 setupCounter(document.querySelector("#counter")); */
 
+//use tailwind css for this project
 const URL = "https://web.dragonball-api.com/";
 const URLz = "https://dragonball-api.com/api/characters/1";
 
-async function getData(URL) {
+async function getData(URLz) {
   try {
-    const response = await fetch(URL);
+    const response = await fetch(URLz);
     if (response.status != 200) {
       throw new Error(response);
     } else {
