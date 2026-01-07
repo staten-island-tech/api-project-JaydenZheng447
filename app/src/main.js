@@ -24,7 +24,7 @@ import { setupCounter } from "./counter.js";
 setupCounter(document.querySelector("#counter")); */
 
 //use tailwind css for this project
-const apiInput = "1";
+let apiInput = "4";
 const URLz = `https://dragonball-api.com/api/characters/${apiInput}`;
 
 async function getData(URLz) {
@@ -48,14 +48,23 @@ async function getData(URLz) {
   }
 }
 
-const charName = document.getElementById("charName");
+const userInput = document.getElementById("userInput");
+const userInputButton = document.getElementById("userInputButton");
+userInputButton.addEventListener("click", function () {
+  apiInput = document.getElementById("userInput");
+  console.log("Input recieved");
+  console.log(apiInput);
+});
 
+/* 
 document.getElementById("api-response").insertAdjacentHTML(
   "afterend",
   `<div class="card" >
        <h3>${data.name} and ${data.id}</h3>
       </div>`
-);
+); */
+
+getData(URLz);
 
 async function fetchDataInParallel() {
   const parameters = [
