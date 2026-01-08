@@ -48,9 +48,11 @@ async function getData(URLz) {
   }
 }
 
-const userInput = document.getElementById("userInput");
+const formField = document.getElementById("userInput");
 const userInputButton = document.getElementById("userInputButton");
-userInputButton.addEventListener("click", function () {
+const formData = new FormData(formField, userInputButton);
+userInputButton.addEventListener("click", function (e) {
+  e.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
   apiInput = document.getElementById("userInput");
   console.log("Input recieved");
   console.log(apiInput);
