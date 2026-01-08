@@ -51,6 +51,7 @@ async function getData(URLz) {
 const formField = document.getElementById("userInput");
 const userInputButton = document.getElementById("userInputButton");
 const formData = new FormData(formField, userInputButton);
+
 userInputButton.addEventListener("click", function (e) {
   e.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
   apiInput = document.getElementById("userInput");
