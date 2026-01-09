@@ -22,15 +22,27 @@
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
+    <!-- <div class="search">
+      <i class="fa-solid fa-location-dot"></i>
+      <input type="text" placeholder="enter your location." class="input-val" />
+      <button id="searchButton" class="fa-solid fa-magnifying-glass"></button>
+    </div> -->
+    <div class="result">
+      <!-- Results will appear here -->
+    </div>
     <div class="bg-amber-100 text-black mx-auto" id="api-response">
-      <form>
+      <form action="">
+        <input type="text" placeholder="Enter a word" />
+        <button type="submit">Search this</button>
+      </form>
+      <!-- <form>
         Type an ID number here:
         <input type="text" name="leCharName" class="bg-white" id="userInput" />
         <input type="submit" value="Submit" />
         <button class="myButton" id="userInputButton">
           Show your custom API entry
         </button>
-      </form>
+      </form> -->
     </div>
     <div class="flexcontainer">
       <div class="card">
@@ -48,24 +60,6 @@
 
       <div class="card">
         <button class="myButton" id="hardButton">Hard difficulty</button>
-      </div>
-    </div>
-    <div class="flexcontainer">
-      <div class="card">
-        <button class="" id="huntButton">Hunt!</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="sleepButton">Sleep!</button>
-      </div>
-
-      <div class="card">
-        <button class="myButton" id="eatButton">Eat!</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="playButton">Play!</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="batheButton">Bathe!</button>
       </div>
     </div>
 
@@ -91,12 +85,6 @@
     <div class="flexcontainer">
       <div class="card">
         <button class="myButton" id="darkLightButton">Dark/Light Mode</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="capooImageButton">I want Bugcat!</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="dogooImageButton">I want Dogdog!</button>
       </div>
     </div>
     <script type="module" src="/src/main.js"></script>
