@@ -24,12 +24,22 @@ import { setupCounter } from "./counter.js";
 setupCounter(document.querySelector("#counter")); */
 
 //use tailwind css for this project
-let apiInput = "4";
-const URLz = `https://dragonball-api.com/api/characters/${apiInput}`;
 
-async function getData(URLz) {
+const form = document.querySelector("form");
+const resultDiv = document.querySelector(".result");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  getData(form.elements[0].value);
+  /* getWordInfo(form.elements[0].value); */
+  console.log(form.elements[0].value);
+});
+
+async function getData(zInput) {
   try {
-    const response = await fetch(URLz);
+    const response = await fetch(
+      `https://dragonball-api.com/api/characters/${zInput}`
+    );
     if (response.status != 200) {
       throw new Error(response);
     } else {
@@ -41,21 +51,17 @@ async function getData(URLz) {
        <h3>${data.name} and ${data.id}</h3>
       </div>`
       );
+      document.getElementById(
+        "api-response"
+      ).innerHTML = `https://dragonball-api.com/api/characters/${zInput}`;
+      zInput.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
+      console.log("Input recieved");
     }
   } catch (error) {
     console.log(error);
     console.log("no bueno");
   }
 }
-
-const form = document.querySelector("form");
-const resultDiv = document.querySelector(".result");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  getWordInfo(form.elements[0].value);
-  console.log(form.elements[0].value);
-});
 
 const getWordInfo = async (word) => {
   try {
@@ -121,8 +127,6 @@ document.getElementById("api-response").insertAdjacentHTML(
        <h3>${data.name} and ${data.id}</h3>
       </div>`
 ); */
-
-getData(URLz);
 
 async function fetchDataInParallel() {
   const parameters = [
