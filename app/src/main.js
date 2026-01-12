@@ -1,3 +1,4 @@
+//whalen: "don't use global variables"
 import "./style.css";
 import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
@@ -45,15 +46,16 @@ async function getData(zInput) {
     } else {
       const data = await response.json(); //makes the data into JSON object we can use
       console.log(data);
-      document.getElementById("api-response").insertAdjacentHTML(
+
+      const cardHolderPrimary = document.getElementById("cardHolderPrimary");
+      cardHolderPrimary.insertAdjacentHTML(
         "afterend",
         `<div class="card">
        <h3>${data.name} and ${data.id}</h3>
+       <img class = "size-20 mx-auto" src="${data.image}"/>
       </div>`
       );
-      document.getElementById(
-        "api-response"
-      ).innerHTML = `https://dragonball-api.com/api/characters/${zInput}`;
+
       zInput.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
       console.log("Input recieved");
     }
