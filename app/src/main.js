@@ -4,37 +4,31 @@ import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
 
-/* document.querySelector("#app").innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`;
-
-setupCounter(document.querySelector("#counter")); */
-
 //use tailwind css for this project
+function minimizeGlobalVariableSillyRubricRequirement() {
+  const form = document.querySelector("form");
+  const resultDiv = document.querySelector(".result");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    getData(form.elements[0].value);
+    /* getWordInfo(form.elements[0].value); */
+    console.log(form.elements[0].value);
+  });
 
-const form = document.querySelector("form");
-const resultDiv = document.querySelector(".result");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  getData(form.elements[0].value);
-  /* getWordInfo(form.elements[0].value); */
-  console.log(form.elements[0].value);
-});
+  const showAllButton = document.getElementById("showAllButton");
+  const showZFighterButton = document.getElementById("showZFighterButton");
+  const showFriezaButton = document.getElementById("showFriezaButton");
+  const showVillainButton = document.getElementById("showVillainButton");
+  showAllButton.addEventListener("click", function (e) {
+    for (let i = 1; i < 100; i++) {
+      e.preventDefault();
+      form.elements[0].value = i;
+      console.log(form.elements[0].value);
+      getDataMass(form.elements[0].value);
+    }
+  });
+}
+minimizeGlobalVariableSillyRubricRequirement();
 
 async function getData(zInput) {
   try {
@@ -46,22 +40,47 @@ async function getData(zInput) {
     } else {
       const data = await response.json(); //makes the data into JSON object we can use
       console.log(data);
-
       const cardHolderPrimary = document.getElementById("cardHolderPrimary");
-      cardHolderPrimary.insertAdjacentHTML(
-        "afterend",
-        `<div class="card">
-       <h3>${data.name} and ${data.id}</h3>
-       <img class = "size-20 mx-auto" src="${data.image}"/>
-      </div>`
-      );
+      const effectTxt = document.getElementById("effectTxt");
+      effectTxt.innerHTML = `<div class="card">
+       <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
+      </div>`;
       const imgbox = document.getElementById("imgbox");
-      imgbox.innerHTML = zInput.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
+      imgbox.innerHTML = `<img class = "size-100 mx-auto" src="${data.image}"/>`;
+      zInput.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
       console.log("Input recieved");
     }
   } catch (error) {
     console.log(error);
-    console.log("no bueno");
+    console.log("Something's wrong with this link");
+  }
+}
+
+async function getDataMass(zInput) {
+  try {
+    const response = await fetch(
+      `https://dragonball-api.com/api/characters/${zInput}`
+    );
+    if (response.status != 200) {
+      throw new Error(response);
+    } else {
+      const data = await response.json(); //makes the data into JSON object we can use
+      console.log(data);
+      const cardHolderPrimary = document.getElementById("cardHolderPrimary");
+      const effectTxt = document.getElementById("effectTxt");
+      effectTxt.insertAdjacentHTML =
+        ("afterend",
+        `<div class="card">
+       <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
+      </div>`);
+      effectTxt.insertAdjacentHTML =
+        ("afterend", `<img class = "size-100 mx-auto" src="${data.image}"/>`);
+      //prevents the form from refreshing the page(which is a very annoying feature)
+      console.log("Input recieved");
+    }
+  } catch (error) {
+    console.log(error);
+    console.log("Something's wrong with this link");
   }
 }
 
@@ -129,13 +148,13 @@ document.getElementById("api-response").insertAdjacentHTML(
        <h3>${data.name} and ${data.id}</h3>
       </div>`
 ); */
-
+/* 
 async function fetchDataInParallel() {
   const parameters = [
     "name",
     "id",
     "ki",
-    "race" /* Add more parameters here */,
+    "race" ,
   ];
   // Map each parameter to an API call with the corresponding index
   const promises = parameters.map(
@@ -158,7 +177,7 @@ function othername() {
   alert(input);
   console.log(input);
 }
-fetchDataInParallel(URLz);
+fetchDataInParallel(URLz); */
 /* 
 getData(URL);
 getData(URLz);
