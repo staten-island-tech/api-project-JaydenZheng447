@@ -55,8 +55,8 @@ async function getData(zInput) {
        <img class = "size-20 mx-auto" src="${data.image}"/>
       </div>`
       );
-
-      zInput.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
+      const imgbox = document.getElementById("imgbox");
+      imgbox.innerHTML = zInput.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
       console.log("Input recieved");
     }
   } catch (error) {
