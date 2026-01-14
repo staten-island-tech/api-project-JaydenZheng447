@@ -18,15 +18,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bugcat Capoo Game</title>
+    <title>API Search Project</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <!-- <div class="search">
-      <i class="fa-solid fa-location-dot"></i>
-      <input type="text" placeholder="enter your location." class="input-val" />
-      <button id="searchButton" class="fa-solid fa-magnifying-glass"></button>
-    </div> -->
     <div class="result">
       <!-- Results will appear here -->
     </div>
@@ -35,72 +30,53 @@
       id="api-response"
     >
       <form action="">
-        <input type="text" placeholder="Enter a word" />
+        <input type="text" placeholder="Enter a NUMBER here" />
         <button type="submit">Search this</button>
+        <!-- //sends form data over sir -->
       </form>
-      <!-- <form>
-        Type an ID number here:
-        <input type="text" name="leCharName" class="bg-white" id="userInput" />
-        <input type="submit" value="Submit" />
-        <button class="myButton" id="userInputButton">
-          Show your custom API entry
-        </button>
-      </form> -->
     </div>
-    <div class="flexcontainer" id="cardHolderPrimary">
-      <div class="card">
-        <button
-          class="bg-amber-400 text-black mx-auto flex flex-wrap"
-          id="showAllButton"
-        >
-          Show all
-        </button>
-      </div>
-      <div class="card">
-        <button
-          class="bg-amber-400 text-black mx-auto flex flex-wrap"
-          id="showZFighterButton"
-        >
-          Show Z-Fighters
-        </button>
-      </div>
+    <div
+      class="bg-amber-100 text-black mx-auto flex flex-wrap"
+      id="cardHolderPrimary"
+    >
+      <button
+        class="bg-amber-400 text-black mx-auto flex flex-wrap"
+        id="showAllButton"
+      >
+        Show all
+      </button>
 
-      <div class="card">
-        <button
-          class="bg-amber-400 text-black mx-auto flex flex-wrap"
-          id="showFriezaButton"
-        >
-          Show Freiza Force
-        </button>
-      </div>
+      <button
+        class="bg-amber-400 text-black mx-auto flex flex-wrap"
+        id="showZFighterButton"
+      >
+        Show Z-Fighters
+      </button>
 
-      <div class="card">
-        <button
-          class="bg-amber-400 text-black mx-auto flex flex-wrap"
-          id="showVillainButton"
-        >
-          Show Villains
-        </button>
-      </div>
+      <button
+        class="bg-amber-400 text-black mx-auto flex flex-wrap"
+        id="showFriezaButton"
+      >
+        Show Freiza Force
+      </button>
+
+      <button
+        class="bg-amber-400 text-black mx-auto flex flex-wrap"
+        id="showVillainButton"
+      >
+        Show Villains
+      </button>
     </div>
 
     <div id="imgbox">
       <img class="border-y-violet-800" src="" alt="Description of image" />
     </div>
 
-    <div class="flexcontainer2">
-      <div class="card" id="effectTxt">
-        <h3>
-          Welcome to Capoo Game! Press a difficulty button to start! You'll die
-          if hunger is 10+; boredom is 10+; energy is 0-; and cleanliness is 0-
-        </h3>
-      </div>
-    </div>
-    <div class="flexcontainer">
-      <div class="card">
-        <button class="myButton" id="darkLightButton">Dark/Light Mode</button>
-      </div>
-    </div>
+    <div
+      class="bg-blue-400 text-black mx-auto flex flex-wrap"
+      id="effectTxt"
+    ></div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

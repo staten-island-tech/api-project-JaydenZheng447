@@ -20,15 +20,15 @@ function minimizeGlobalVariableSillyRubricRequirement() {
   const showFriezaButton = document.getElementById("showFriezaButton");
   const showVillainButton = document.getElementById("showVillainButton");
   showAllButton.addEventListener("click", function (e) {
-    for (let i = 1; i < 100; i++) {
-      e.preventDefault();
-      form.elements[0].value = i;
-      console.log(form.elements[0].value);
-      getDataMass(form.elements[0].value);
-    }
+    e.preventDefault();
+    form.elements[0].value = i;
+    console.log(form.elements[0].value);
+    getDataMass(form.elements[0].value);
   });
 }
 minimizeGlobalVariableSillyRubricRequirement();
+
+function sigmaSigmaRubricRequirementCallableFunction(e) {}
 
 async function getData(zInput) {
   try {
@@ -56,31 +56,33 @@ async function getData(zInput) {
   }
 }
 
-async function getDataMass(zInput) {
-  try {
-    const response = await fetch(
-      `https://dragonball-api.com/api/characters/${zInput}`
-    );
-    if (response.status != 200) {
-      throw new Error(response);
-    } else {
-      const data = await response.json(); //makes the data into JSON object we can use
-      console.log(data);
-      const cardHolderPrimary = document.getElementById("cardHolderPrimary");
-      const effectTxt = document.getElementById("effectTxt");
-      effectTxt.insertAdjacentHTML =
-        ("afterend",
-        `<div class="card">
-       <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
+async function getDataMassEffect(rInput) {
+  for (let i = 0; i < rInput; i++) {
+    try {
+      const response = await fetch(
+        `https://dragonball-api.com/api/characters/${i}`
+      );
+      if (response.status != 200) {
+        throw new Error(response);
+      } else {
+        const data = await response.json(); //makes the data into JSON object we can use
+        console.log(data);
+        const cardHolderPrimary = document.getElementById("cardHolderPrimary");
+        const effectTxt = document.getElementById("effectTxt");
+        effectTxt.insertAdjacentHTML =
+          ("afterend",
+          `<div><div class= "w-96 justify-center text-xl position: absolute bottom-0 text-black">
+            <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
+      </div>
+      <img class = "size-100 mx-auto mb-24" src="${data.image}"/>
       </div>`);
-      effectTxt.insertAdjacentHTML =
-        ("afterend", `<img class = "size-100 mx-auto" src="${data.image}"/>`);
-      //prevents the form from refreshing the page(which is a very annoying feature)
-      console.log("Input recieved");
+        //prevents the form from refreshing the page(which is a very annoying feature)
+        console.log("Input recieved");
+      }
+    } catch (error) {
+      console.log(error);
+      console.log("Something's wrong with this link");
     }
-  } catch (error) {
-    console.log(error);
-    console.log("Something's wrong with this link");
   }
 }
 
@@ -148,44 +150,3 @@ document.getElementById("api-response").insertAdjacentHTML(
        <h3>${data.name} and ${data.id}</h3>
       </div>`
 ); */
-/* 
-async function fetchDataInParallel() {
-  const parameters = [
-    "name",
-    "id",
-    "ki",
-    "race" ,
-  ];
-  // Map each parameter to an API call with the corresponding index
-  const promises = parameters.map(
-    (param, index) => getData(param, index + 1) // Pass the API number to track which API we're calling
-  );
-  try {
-    // Wait for all the promises to resolve
-    const results = await Promise.all(promises);
-    // Process the results and log each response
-    results.forEach((result, index) => {
-      console.log(`API ${index + 1} Response:`, result);
-    });
-  } catch (error) {
-    console.error("Error during fetching:", error);
-  }
-}
-
-function othername() {
-  var input = document.getElementById("userInput").value;
-  alert(input);
-  console.log(input);
-}
-fetchDataInParallel(URLz); */
-/* 
-getData(URL);
-getData(URLz);
-getData(URL);
-getData(URL);
-function zootData(x) {
-  for (let i = 0; i < x; i++) {
-    getData(URL);
-  }
-}
-zootData(5); */
