@@ -18,97 +18,77 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bugcat Capoo Game</title>
+    <title>API Search Project</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div class="flexcontainer" id="api-response">
-      <form>
-        Character name:
-        <input type="text" name="charName" id="charName" /><input
-          type="submit"
-          value="Submit"
-        />
+    <div class="result">
+      <!-- Results will appear here -->
+    </div>
+    <div
+      class="bg-amber-100 text-black mx-auto flex flex-wrap"
+      id="api-response"
+    >
+      <form action="">
+        <input type="text" placeholder="Enter a NUMBER here" />
+        <button type="submit">Search this</button>
+        <!-- //sends form data over sir -->
       </form>
     </div>
-    <div class="flexcontainer">
-      <div class="card">
-        <button class="myButton" id="statButton">Show stats</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="easyButton">Easy mode</button>
-      </div>
+    <div
+      class="bg-amber-100 text-black mx-auto flex flex-wrap"
+      id="cardHolderPrimary"
+    >
+      <button
+        class="bg-amber-400 text-black mx-auto flex flex-wrap"
+        id="showAllButton"
+      >
+        Show all
+      </button>
 
-      <div class="card">
-        <button class="myButton" id="mediumButton">Medium difficulty</button>
-      </div>
+      <button
+        class="bg-amber-400 text-black mx-auto flex flex-wrap"
+        id="showZFighterButton"
+      >
+        Show Z-Fighters
+      </button>
 
-      <div class="card">
-        <button class="myButton" id="hardButton">Hard difficulty</button>
-      </div>
-    </div>
-    <div class="flexcontainer">
-      <div class="card">
-        <button class="" id="huntButton">Hunt!</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="sleepButton">Sleep!</button>
-      </div>
+      <button
+        class="bg-amber-400 text-black mx-auto flex flex-wrap"
+        id="showFriezaButton"
+      >
+        Show Freiza Force
+      </button>
 
-      <div class="card">
-        <button class="myButton" id="eatButton">Eat!</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="playButton">Play!</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="batheButton">Bathe!</button>
-      </div>
+      <button
+        class="bg-amber-400 text-black mx-auto flex flex-wrap"
+        id="showVillainButton"
+      >
+        Show Villains
+      </button>
     </div>
 
     <div id="imgbox">
       <img
-        class="catimg"
-        src="https://ih1.redbubble.net/image.5148165488.2507/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
-        alt="Description of image"
+        class="border-y-violet-800"
+        src=""
+        alt="This is where your custom API search image will appear"
       />
     </div>
 
-    <div class="flexcontainer2">
-      <div class="card" id="effectTxt">
-        <h3>
-          Welcome to Capoo Game! Press a difficulty button to start! You'll die
-          if hunger is 10+; boredom is 10+; energy is 0-; and cleanliness is 0-
-        </h3>
-      </div>
+    <div
+      class="bg-blue-400 text-black mx-auto flex flex-wrap mt-4 mb-4"
+      id="effectTxt"
+    >
+      This is where your custom API search data will appear.
     </div>
-    <div class="flexcontainer2">
-      <div class="card" id="statsTxt">
-        <h3>
-          Your stats are Hunger: 0 Food: 0 Boredom: 0 Energy: 0 Cleanliness: 0
-        </h3>
-      </div>
+    <div
+      class="text-black mx-20 flex flex-wrap justify-center border-4"
+      id="effectTxtMass"
+    >
+      Placeholder
     </div>
-    <div class="flexcontainer">
-      <div class="card">
-        <button class="myButton" id="darkLightButton">Dark/Light Mode</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="capooImageButton">I want Bugcat!</button>
-      </div>
-      <div class="card">
-        <button class="myButton" id="dogooImageButton">I want Dogdog!</button>
-      </div>
-    </div>
-    <script type="module" src="/src/main.js">
-      // function darkLightMode() {
-      //   const darkLightButton = document.getElementById(darkLightButton);
-      //   darkLightButton.addEventListener("click", function () {
-      //   var element = document.body;
-      //   element.classList.toggle("darkMode");
-      //   console.log('lololo')
-      //   });
-      // }
-    </script>
+
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

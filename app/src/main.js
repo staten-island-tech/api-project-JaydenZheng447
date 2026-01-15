@@ -1,91 +1,133 @@
+//whalen: "don't use global variables"
 import "./style.css";
 import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
 
-/* document.querySelector("#app").innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`;
-
-setupCounter(document.querySelector("#counter")); */
-
 //use tailwind css for this project
-const URL = "https://web.dragonball-api.com/";
-const URLz = "https://dragonball-api.com/api/characters/1";
+function minimizeGlobalVariableSillyRubricRequirement() {
+  const form = document.querySelector("form");
+  const resultDiv = document.querySelector(".result");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    getData(form.elements[0].value);
+    /* getWordInfo(form.elements[0].value); */
+    console.log(form.elements[0].value);
+  });
 
-async function getData(URLz) {
+  const showAllButton = document.getElementById("showAllButton");
+  const showZFighterButton = document.getElementById("showZFighterButton");
+  const showFriezaButton = document.getElementById("showFriezaButton");
+  const showVillainButton = document.getElementById("showVillainButton");
+  showZFighterButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    getDataMassEffectFaction("Z Fighter");
+  });
+  showFriezaButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    getDataMassEffectFaction("Army of Frieza");
+  });
+  showVillainButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    getDataMassEffectFaction("Villain");
+  });
+}
+minimizeGlobalVariableSillyRubricRequirement();
+getDataMassEffect(100);
+async function getData(zInput) {
   try {
-    const response = await fetch(URLz);
+    const response = await fetch(
+      `https://dragonball-api.com/api/characters/${zInput}`
+    );
     if (response.status != 200) {
       throw new Error(response);
     } else {
       const data = await response.json(); //makes the data into JSON object we can use
       console.log(data);
-      document.getElementById("api-response").insertAdjacentHTML(
-        "afterend",
-        `<div class="card" >
-       <h3>${data.name} and ${data.id}</h3>
-      </div>`
-      );
+      const cardHolderPrimary = document.getElementById("cardHolderPrimary");
+      const effectTxt = document.getElementById("effectTxt");
+      effectTxt.innerHTML = `<div class="card">
+       <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
+      </div>`;
+      const imgbox = document.getElementById("imgbox");
+      imgbox.innerHTML = `<img class = "size-100 mx-auto" src="${data.image}"/>`;
+      zInput.preventDefault(); //prevents the form from refreshing the page(which is a very annoying feature)
+      console.log("Input recieved");
     }
   } catch (error) {
     console.log(error);
-    console.log("no bueno");
+    console.log("Something's wrong with this link");
   }
 }
 
-const charName = document.getElementById("charName");
-document.getElementById("api-response").insertAdjacentHTML(
-  "afterend",
-  `<div class="card" >
-       <h3>${data.name} and ${data.id}</h3>
-      </div>`
-);
+async function getDataMassEffect(rInput) {
+  const effectTxtMass = document.getElementById("effectTxtMass");
+  effectTxtMass.innerHTML = "";
+  for (let i = 1; i < rInput; i++) {
+    try {
+      const response = await fetch(
+        `https://dragonball-api.com/api/characters/${i}`
+      );
+      if (response.status != 200) {
+        throw new Error(response);
+      } else {
+        const data = await response.json(); //makes the data into JSON object we can use
+        console.log(data);
 
-async function fetchDataInParallel() {
-  const parameters = [
-    "name",
-    "id",
-    "ki",
-    "race" /* Add more parameters here */,
-  ];
-  // Map each parameter to an API call with the corresponding index
-  const promises = parameters.map(
-    (param, index) => getData(param, index + 1) // Pass the API number to track which API we're calling
-  );
-  try {
-    // Wait for all the promises to resolve
-    const results = await Promise.all(promises);
-    // Process the results and log each response
-    results.forEach((result, index) => {
-      console.log(`API ${index + 1} Response:`, result);
-    });
-  } catch (error) {
-    console.error("Error during fetching:", error);
+        // class= "w-96 justify-center text-xl position: absolute bottom-0 text-black"
+        effectTxtMass.insertAdjacentHTML(
+          "beforeend",
+          `<div>
+          <div class = "p-5">
+            <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
+          </div>
+          <img class = "size-100 mx-auto mb-24" src="${data.image}"/>
+          </div>`
+        );
+        //prevents the form from refreshing the page(which is a very annoying feature)
+        console.log("Input recieved");
+      }
+    } catch (error) {
+      console.log(error);
+      console.log("Something's wrong with this link");
+    }
   }
 }
 
-getData(URL);
-getData(URLz);
-getData(URL);
-getData(URL);
-function zootData(x) {
-  for (let i = 0; i < x; i++) {
-    getData(URL);
+async function getDataMassEffectFaction(faction) {
+  const effectTxtMass = document.getElementById("effectTxtMass");
+  effectTxtMass.innerHTML = "";
+  for (let i = 1; i < 100; i++) {
+    try {
+      const response = await fetch(
+        `https://dragonball-api.com/api/characters/${i}`
+      );
+      if (response.status != 200) {
+        throw new Error(response);
+      } else {
+        const data = await response.json(); //makes the data into JSON object we can use
+        console.log(data);
+        console.log("Input recieved");
+        // class= "w-96 justify-center text-xl position: absolute bottom-0 text-black"
+        if (data.affiliation === faction) {
+          effectTxtMass.insertAdjacentHTML(
+            "beforeend",
+            `<div>
+          <div class = "p-5">
+            <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
+          </div>
+          <img class = "size-100 mx-auto mb-24" src="${data.image}"/>
+          </div>`
+          );
+        } else {
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      console.log("Something's wrong with this link");
+      const effectTxt = document.getElementById("effectTxt");
+      effectTxt.innerHTML =
+        "Sorry! That number doesn't seem to be in the API. Please try a different number!";
+    }
   }
 }
-zootData(5);
