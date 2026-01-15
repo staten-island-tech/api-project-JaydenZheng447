@@ -57,6 +57,9 @@ async function getData(zInput) {
   } catch (error) {
     console.log(error);
     console.log("Something's wrong with this link");
+    const effectTxt = document.getElementById("effectTxt");
+    effectTxt.innerHTML =
+      "Sorry! That number doesn't seem to be in the API. Please try a different number!";
   }
 }
 
@@ -125,9 +128,6 @@ async function getDataMassEffectFaction(faction) {
     } catch (error) {
       console.log(error);
       console.log("Something's wrong with this link");
-      const effectTxt = document.getElementById("effectTxt");
-      effectTxt.innerHTML =
-        "Sorry! That number doesn't seem to be in the API. Please try a different number!";
     }
   }
 }
