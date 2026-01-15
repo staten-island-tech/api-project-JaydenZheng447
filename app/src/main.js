@@ -19,13 +19,21 @@ function minimizeGlobalVariableSillyRubricRequirement() {
   const showZFighterButton = document.getElementById("showZFighterButton");
   const showFriezaButton = document.getElementById("showFriezaButton");
   const showVillainButton = document.getElementById("showVillainButton");
-  showAllButton.addEventListener("click", (e) => {
+  showZFighterButton.addEventListener("click", (e) => {
     e.preventDefault();
-    getDataMassEffect(10);
+    getDataMassEffectFaction("Z Fighter");
+  });
+  showFriezaButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    getDataMassEffectFaction("Army of Frieza");
+  });
+  showVillainButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    getDataMassEffectFaction("Villain");
   });
 }
 minimizeGlobalVariableSillyRubricRequirement();
-
+getDataMassEffect(100);
 async function getData(zInput) {
   try {
     const response = await fetch(
@@ -68,9 +76,9 @@ async function getDataMassEffect(rInput) {
 
         // class= "w-96 justify-center text-xl position: absolute bottom-0 text-black"
         effectTxtMass.insertAdjacentHTML(
-          "afterend",
+          "beforeend",
           `<div>
-          <div>
+          <div class = "p-5">
             <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
           </div>
           <img class = "size-100 mx-auto mb-24" src="${data.image}"/>
@@ -82,6 +90,44 @@ async function getDataMassEffect(rInput) {
     } catch (error) {
       console.log(error);
       console.log("Something's wrong with this link");
+    }
+  }
+}
+
+async function getDataMassEffectFaction(faction) {
+  const effectTxtMass = document.getElementById("effectTxtMass");
+  effectTxtMass.innerHTML = "";
+  for (let i = 1; i < 100; i++) {
+    try {
+      const response = await fetch(
+        `https://dragonball-api.com/api/characters/${i}`
+      );
+      if (response.status != 200) {
+        throw new Error(response);
+      } else {
+        const data = await response.json(); //makes the data into JSON object we can use
+        console.log(data);
+        console.log("Input recieved");
+        // class= "w-96 justify-center text-xl position: absolute bottom-0 text-black"
+        if (data.affiliation === faction) {
+          effectTxtMass.insertAdjacentHTML(
+            "beforeend",
+            `<div>
+          <div class = "p-5">
+            <h3><b>Name:</b> ${data.name} <b>Id:</b> ${data.id} <b>Race:</b> ${data.race} <b>Ki:</b> ${data.ki}</h3>
+          </div>
+          <img class = "size-100 mx-auto mb-24" src="${data.image}"/>
+          </div>`
+          );
+        } else {
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      console.log("Something's wrong with this link");
+      const effectTxt = document.getElementById("effectTxt");
+      effectTxt.innerHTML =
+        "Sorry! That number doesn't seem to be in the API. Please try a different number!";
     }
   }
 }
